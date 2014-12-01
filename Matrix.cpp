@@ -35,8 +35,6 @@ void Matrix::operator=(Matrix const &obj) {
 			m_Element[i] = obj.m_Element[i];
 		}
 	}
-//	return *this;
-
 }
 
 Matrix::Matrix(const Matrix &obj) :

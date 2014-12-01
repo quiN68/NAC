@@ -15,10 +15,9 @@ Funktion2D::Funktion2D() {
 }
 
 float Funktion2D::operator ()(const Vektor2D& v) const {
-	Vektor2D temp(1, 0);
+	Vektor2D temp = Vektor2D(1, 0) + v;
 	float zaehler = 0;
-	Vektor2D help = temp + v;
-	zaehler = help.betrag();
+	zaehler = temp.betrag();
 	return (sin(zaehler)/zaehler)*(-1);
 }
 
@@ -40,22 +39,24 @@ Vektor2D gradient2D(Funktion2D& func, Vektor2D& vek) {
 	return Vektor2D(ergebnis1, ergebnis2);
 }
 
-Vektor2D minimieren2D(Funktion2D& func, Vektor2D startstelle,
+Vektor2D minimieren2D(Funktion2D& func, Vektor2D& startstelle,
 		float schrittweite, float tol, float ftol) {
 	Vektor2D alterStart(0, 0);
 	float funcWertAlt = 0,funcWertNeu = 0;
+	int iterations = 0;
 	// mindestens einmal ausführen
 	do {
 		funcWertAlt = func(startstelle);
 		alterStart = startstelle;
 		startstelle = startstelle + gradient2D(func, startstelle) * (-schrittweite);
 		funcWertNeu = func(startstelle);
-//		cout << funcWertAlt << " " << funcWertNeu << endl;
-//		startstelle.ausgabe();
-//		cout << endl;
-	} while (ftol < fabs(funcWertNeu-funcWertAlt)
-			&& tol < fabs(alterStart.betrag() - startstelle.betrag()));
-
+		iterations++;
+	} while (//Abbruchbedingungen
+			ftol < fabs(funcWertNeu-funcWertAlt)
+			&&
+			tol < fabs(alterStart.betrag() - startstelle.betrag())
+			&&
+			iterations < 10000);
 	return startstelle;
 }
 

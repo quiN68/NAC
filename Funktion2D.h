@@ -22,6 +22,6 @@ virtual float operator()(const Vektor2D&) const;
 };
 
 Vektor2D gradient2D(Funktion2D&, Vektor2D&);
-Vektor2D minimieren2D(Funktion2D&, Vektor2D, float, float tol = 0.0001, float ftol = 0.0001);
+Vektor2D minimieren2D(Funktion2D&, Vektor2D&, float, float tol = 0.00001, float ftol = 0.00001);
 
 #endif /* FUNKTION2D_H_ */

@@ -22,7 +22,7 @@ Vektor2D::Vektor2D(float a, float b) :
 Vektor2D Vektor2D::operator *(float x) {
 	Vektor2D temp;
 	for (int i = 0; i < 2; i++) {
-		temp.m_Element[i] = this->m_Element[i] * x;
+		temp.m_Element[i] = m_Element[i] * x;
 	}
 	return temp;
 }
@@ -30,7 +30,7 @@ Vektor2D Vektor2D::operator *(float x) {
 Vektor2D Vektor2D::operator +(const Vektor2D& y) {
 	Vektor2D temp;
 	for (int i = 0; i < 2; i++) {
-		temp.m_Element[i] = this->m_Element[i] + y.m_Element[i];
+		temp.m_Element[i] = m_Element[i] + y.m_Element[i];
 	}
 	return temp;
 }
